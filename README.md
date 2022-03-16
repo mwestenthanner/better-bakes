@@ -1,5 +1,7 @@
 # better-bakes
 
+Better Bakes is a kitchen unit converter for things such as cups to grams and pan sizes. It is written in Vue 3 and Typescript with PWA support.
+
 ## Project setup
 ```
 npm install
