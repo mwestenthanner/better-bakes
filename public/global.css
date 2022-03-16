@@ -18,7 +18,8 @@ body, input, button, select, option {
 /* --- COLOR VARIABLES --- */
 :root {
     --light-grey: rgb(241, 241, 241);
+    --grey: rgb(197, 197, 197);
     --dark-grey: rgb(51, 51, 51);
-    --accent-turquoise: rgb(15, 96, 102);
+    --accent-turquoise: rgb(0, 119, 128);
     --accent-yellow: rgb(250, 195, 15);
 }

@@ -5,6 +5,7 @@
     <Select :labelText="'A select'" :selectName="'example'" :selectOptions="['One', 'Two']"></Select>
     <Button :buttonText="'I\'m a button'"></Button>
   </main>
+  <Menu></Menu>
 </template>
 
 <script lang="ts">
@@ -13,6 +14,7 @@ import Button from './components/Button.vue';
 import Input from './components/Input.vue';
 import Select from './components/Select.vue';
 import Header from './components/Header.vue';
+import Menu from './components/Menu.vue';
 
 export default defineComponent({
   name: 'App',
@@ -20,16 +22,22 @@ export default defineComponent({
     Header,
     Button,
     Input,
-    Select
+    Select,
+    Menu
 }
 });
 </script>
 
 <style>
 
-#app {
+header {
   width: 80%;
-  padding: 3rem 10%;
+  padding: 3rem 10% 0 10%;
+}
+
+main {
+  width: 80%;
+  padding: 0 10% 0 10%;
 }
 
 label {
