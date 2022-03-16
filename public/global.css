@@ -10,16 +10,35 @@
 }
 
 /* --- GLOBAL STYLING --- */
+body {
+    background-color: var(--background);
+}
+
 body, input, button, select, option {
     font-family: 'Inconsolata', monospace;
-    color: var(--dark-grey);
+    color: var(--text);
 }
 
 /* --- COLOR VARIABLES --- */
 :root {
-    --light-grey: rgb(241, 241, 241);
+    --background: white;
+    --field-background: rgb(241, 241, 241);
     --grey: rgb(197, 197, 197);
-    --dark-grey: rgb(51, 51, 51);
+    --text: rgb(51, 51, 51);
     --accent-turquoise: rgb(0, 119, 128);
     --accent-yellow: rgb(250, 195, 15);
+}
+
+/* --- DARK MODE --- */
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --background: rgb(34, 34, 34);
+        --field-background: rgb(51, 51, 51);
+        --grey: rgb(78, 78, 78);
+        --text: rgb(241, 241, 241);
+        --accent-turquoise: rgb(0, 119, 128);
+        --accent-yellow: rgb(250, 195, 15);
+    }
+
 }

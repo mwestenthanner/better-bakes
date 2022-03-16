@@ -26,7 +26,7 @@ export default defineComponent({
 
 input {
     padding: 0.75rem;
-    background-color: var(--light-grey);
+    background-color: var(--field-background);
     border-radius: 0.5rem;
     border: none;
     font-size: 110%;
