@@ -1,26 +1,38 @@
 <template>
     <main>
         <h2>Ingredient Converter</h2>
-        <Select :labelText="'Choose ingredient'" :selectName="'ingredient'" :selectOptions="sampleIngredients"></Select>
-        <Input :labelText="'Quantity'" :inputType="'number'"></Input>
-        <Select :labelText="'Calculate from...'" :selectName="'from'" :selectOptions="units"></Select>
-        <Select :labelText="'...to:'" :selectName="'to'" :selectOptions="units"></Select>
-        <Button :buttonText="'Calculate'"></Button>
+
+        <label for="ingredient">Select ingredient:</label>
+        <select name="ingredient" id="ingredient">
+            <option v-for="option in sampleIngredients" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input id="quantity" type="number" />
+
+        <label for="original-unit">Convert from...</label>
+        <select name="original-unit" id="original-unit">
+            <option v-for="option in units" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+        </select>
+
+        <label for="convert-unit">...to:</label>
+        <select name="convert-unit" id="convert-unit">
+            <option v-for="option in units" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+        </select>   
+
+        <button>Convert</button>
+
+        <div class="result">
+            <p>2 cups flour is approximately <strong>240 grams</strong>.</p>
+        </div>
+
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Input from '../components/Input.vue'
-import Select from '../components/Select.vue'
-import Button from '../components/Button.vue'
 
 export default defineComponent({
-    components: {
-        Input,
-        Select,
-        Button
-    },
     setup() {
 
         const sampleIngredients = [
@@ -47,5 +59,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+.result {
+    font-size: 110%;
+    margin-top: 2rem;
+}
 
 </style>

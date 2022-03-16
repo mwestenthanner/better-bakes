@@ -25,8 +25,40 @@ body, input, button, select, option {
     --field-background: rgb(241, 241, 241);
     --grey: rgb(197, 197, 197);
     --text: rgb(51, 51, 51);
-    --accent-turquoise: rgb(0, 119, 128);
-    --accent-yellow: rgb(250, 195, 15);
+    --main-accent: rgb(0, 119, 128);
+    --secondary-accent: rgb(250, 176, 15);
+}
+
+/* --- FORM STYLING --- */
+input {
+    padding: 0.75rem;
+    background-color: var(--field-background);
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 110%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 0.75rem;
+    background-color: var(--main-accent);
+    color: white;
+    border-radius: 0.5rem;
+    border: none;
+    width: 100%;
+    font-size: 110%;
+}
+
+select {
+    padding: 0.75rem;
+    background-color: var(--field-background);
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 110%;
+    width: 100%;
+    box-sizing: border-box;
+    border-right: 1rem solid transparent
 }
 
 /* --- DARK MODE --- */
@@ -37,8 +69,8 @@ body, input, button, select, option {
         --field-background: rgb(51, 51, 51);
         --grey: rgb(78, 78, 78);
         --text: rgb(241, 241, 241);
-        --accent-turquoise: rgb(0, 119, 128);
-        --accent-yellow: rgb(250, 195, 15);
+        --main-accent: rgb(250, 176, 15);
+        --secondary-accent: rgb(0, 119, 128);
     }
 
 }

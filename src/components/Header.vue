@@ -19,6 +19,7 @@ header {
     display: flex;
     flex-direction: row;
     margin-bottom: 2rem;
+    align-items: center;
 }
 
 h1 {
@@ -30,11 +31,11 @@ h1 {
 }
 
 .line-1 {
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .line-2 {
-    font-weight: 500;
+    font-weight: 700;
 }
 
 </style>

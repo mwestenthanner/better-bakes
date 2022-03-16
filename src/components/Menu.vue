@@ -72,11 +72,11 @@ export default defineComponent({
 }
 
 .selected, .selected a, .selected p {
-    color: var(--accent-turquoise);
+    color: var(--main-accent);
 }
 
 .selected svg {
-    fill: var(--accent-turquoise);
+    fill: var(--main-accent);
 }
 
 </style>

@@ -1,25 +1,28 @@
 <template>
     <main>
+
         <h2>Pan Size Converter</h2>
-        <Input :labelText="'Radius/length of pan in recipe'" :inputType="'number'"></Input>
-        <Input :labelText="'Radius/length of desired pan'" :inputType="'number'"></Input>
-        <Select :labelText="'Select pan type'" :selectName="'pan-type'" :selectOptions="options"></Select>
-        <Button :buttonText="'Calculate'" @click="calculateRatio()"></Button>
+
+        <label for="original">Original radius/length</label>
+        <input id="original" type="number" />
+
+        <label for="result">Desired radius/length</label>
+        <input id="result" type="number" />
+
+        <label for="input">Select pan type:</label>
+        <select name="pan-type" id="pan-type">
+            <option v-for="option in options" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+        </select>
+
+        <button @click="calculateRatio()">Convert</button>
+        
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Input from '../components/Input.vue'
-import Select from '../components/Select.vue'
-import Button from '../components/Button.vue'
 
 export default defineComponent({
-    components: {
-        Input,
-        Select,
-        Button
-    },
     setup() {
 
         const options = [

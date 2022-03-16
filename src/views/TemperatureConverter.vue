@@ -1,34 +1,39 @@
 <template>
     <main>
+
         <h2>Temperature Converter</h2>
-        <Input :labelText="'Celsius'" :inputType="'number'"></Input>
-        <Input :labelText="'Fahrenheit'" :inputType="'number'"></Input>
-        <Button :buttonText="'Calculate'" @click="calculateTemperature()"></Button>
+
+        <label for="celsius">Celsius</label>
+        <input id="celsius" type="number" v-model="celsius" />
+
+        <label for="fahrenheit">Fahrenheit</label>
+        <input id="fahrenheit" type="number" />
+
+        <button @click="calculateTemperature()">Convert</button>
+
+        <p>{{ celsius }}</p>
+        
     </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Input from '../components/Input.vue'
-import Button from '../components/Button.vue'
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-    components: {
-        Input,
-        Button
-    },
     setup() {
+
+        let celsius = ref(null);
+        let fahrenheit = ref(null);
 
         function calculateTemperature() {
 
-            const celsius = 0;
-            const fahrenheit = celsius * 1.8 + 32;
-
-            return fahrenheit;
+            console.log(celsius);
 
         }
 
         return {
+            celsius,
+            fahrenheit,
             calculateTemperature
         }
 
