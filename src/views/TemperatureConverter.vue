@@ -4,10 +4,10 @@
         <h2>Temperature Converter</h2>
 
         <label for="celsius">Celsius</label>
-        <input id="celsius" type="number" v-model="celsius" @input="emptyInputs('celsius')"/>
+        <input id="celsius" type="number" v-model="celsius" @input="emptyInputs('celsius')"/><span class="unit"> °C</span>
 
         <label for="fahrenheit">Fahrenheit</label>
-        <input id="fahrenheit" type="number" v-model="fahrenheit" @input="emptyInputs('fahrenheit')" />
+        <input id="fahrenheit" type="number" v-model="fahrenheit" @input="emptyInputs('fahrenheit')" /><span class="unit"> °F</span>
 
         <button @click="calculateTemperature()">Convert</button>
 
@@ -64,5 +64,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+input {
+    display: inline-block;
+    width: 90%;
+}
 
 </style>
