@@ -28,6 +28,17 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
+
+select {
+    padding: 0.75rem;
+    background-color: var(--light-grey);
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 110%;
+    width: 100%;
+    box-sizing: border-box;
+    border-right: 1rem solid transparent
+}
 
 </style>

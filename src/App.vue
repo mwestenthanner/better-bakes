@@ -1,8 +1,8 @@
 <template>
   <Header></Header>
   <main>
-    <Input :labelText="'Hi!'" :inputType="'number'"></Input>
-    <Select :selectName="'example'" :selectOptions="['One', 'Two']"></Select>
+    <Input :labelText="'An input'" :inputType="'number'"></Input>
+    <Select :labelText="'A select'" :selectName="'example'" :selectOptions="['One', 'Two']"></Select>
     <Button :buttonText="'I\'m a button'"></Button>
   </main>
 </template>
@@ -30,6 +30,15 @@ export default defineComponent({
 #app {
   width: 80%;
   padding: 3rem 10%;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+Input, Select {
+  margin-bottom: 1.5rem;
 }
 
 </style>
