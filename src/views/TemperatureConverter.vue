@@ -1,7 +1,7 @@
 <template>
     <main>
 
-        <h2>Temperature Converter</h2>
+        <h2>{{ t("temp.heading") }}</h2>
 
         <label for="celsius">Celsius</label>
         <input id="celsius" type="number" v-model="celsius" @input="emptyInputs('celsius')"/><span class="unit"> °C</span>
@@ -9,16 +9,19 @@
         <label for="fahrenheit">Fahrenheit</label>
         <input id="fahrenheit" type="number" v-model="fahrenheit" @input="emptyInputs('fahrenheit')" /><span class="unit"> °F</span>
 
-        <button @click="calculateTemperature()">Convert</button>
+        <button @click="calculateTemperature()">{{ t("temp.submit") }}</button>
 
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
     setup() {
+
+        const {t} = useI18n({})
 
         let celsius = ref();
         let fahrenheit = ref();
@@ -52,6 +55,7 @@ export default defineComponent({
         }
 
         return {
+            t,
             celsius,
             fahrenheit,
             calculateTemperature,

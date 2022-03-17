@@ -1,29 +1,29 @@
 <template>
     <main>
-        <h2>Ingredient Converter</h2>
+        <h2>{{ t("ingredients.heading") }}</h2>
 
-        <label for="ingredient">Select ingredient:</label>
+        <label for="ingredient">{{ t("ingredients.select") }}</label>
         <select @change="convert()" name="ingredient" id="ingredient" v-model="ingredient">
-            <option v-for="option in ingredientList" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+            <option v-for="option in ingredientList" :key="option" :value="option">{{ option }}</option>
         </select>
 
-        <label for="quantity">Quantity:</label>
+        <label for="quantity">{{ t("ingredients.quantity") }}</label>
         <input @change="convert()" id="quantity" type="number" v-model="quantity" />
 
-        <label for="before-unit">Convert from...</label>
+        <label for="before-unit">{{ t("ingredients.from") }}</label>
         <select @change="convert()" name="before-unit" id="before-unit" v-model="beforeUnit">
-            <option v-for="option in units" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+            <option v-for="option in units" :key="option" :value="option.toLowerCase()">{{ t('units.' + option) }}</option>
         </select>
 
-        <label for="after-unit">...to:</label>
+        <label for="after-unit">{{ t("ingredients.to") }}</label>
         <select @change="convert()" name="after-unit" id="after-unit" v-model="afterUnit">
-            <option v-for="option in units" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+            <option v-for="option in units" :key="option" :value="option.toLowerCase()">{{ t('units.' + option) }}</option>
         </select>   
 
-        <button @click="convert()">Convert</button>
+        <button @click="convert()">{{ t("ingredients.submit") }}</button>
 
         <div class="result" v-if="!isNaN(result)">
-            <p>{{ quantity }} {{ beforeUnit }} {{ ingredient}} is approximately <strong>{{ result.toFixed(1) }} {{ afterUnit }}</strong>.</p>
+            <p>{{ quantity }} {{ t('units.' + beforeUnit) }} {{ ingredient }} {{ t("ingredients.result") }} <strong>{{ result.toFixed(1) }} {{ t('units.' + afterUnit) }}</strong>.</p>
         </div>
 
     </main>
@@ -32,17 +32,20 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { getIngredients } from '../store'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
     setup() {
 
-        const ingredient = ref('all-purpose flour');
+        const { t, locale } = useI18n({ useScope: 'global' })
+
+        const ingredient = ref(t("ingredients.default"));
         const quantity = ref();
         const beforeUnit = ref('cups');
         const afterUnit = ref('grams');
         const result = ref();
 
-        const ingredientList = ref(getIngredients.value.map(item => item.name).sort());
+        const ingredientList = ref(getIngredients.value.map(item => item[localizeName()] ?? '').sort());
         const ingredients = getIngredients.value;
 
         const units = [
@@ -55,10 +58,14 @@ export default defineComponent({
             'tbsp'
         ]
 
+        function localizeName() {
+            return 'name_' + locale.value;
+        }
+
         function convert() {
 
-            const selectedIngredient = ingredients.find(element => element.name == ingredient.value);
-            const factor = selectedIngredient?.gramsPerCm3 ?? 1;
+            const selectedIngredient = ingredients.find(element => element[localizeName()] == ingredient.value);
+            const factor = selectedIngredient?.gramsPerCm3 as number ?? 1;
 
             const volumeUnits = [
                 'cups',
@@ -92,7 +99,7 @@ export default defineComponent({
 
                 case weightUnits.includes(beforeUnit.value) && weightUnits.includes(afterUnit.value):
 
-                    result.value = convertWeightToGrams(convertGramsToWeightUnit(quantity.value, beforeUnit.value), afterUnit.value);
+                    result.value = convertGramsToWeightUnit(convertWeightToGrams(quantity.value, beforeUnit.value), afterUnit.value);
                     break;
             }
 
@@ -162,6 +169,7 @@ export default defineComponent({
 
 
         return {
+            t,
             ingredientList,
             units,
             ingredient,

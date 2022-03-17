@@ -4,47 +4,58 @@ const state = ref({
 
     ingredientList: [
         {
-            name: 'all-purpose flour',
+            name_en: 'all-purpose flour',
+            name_de: 'Mehl',
             gramsPerCm3: 0.529
-        },
+        } as {[key: string]: string | number },
         {
-            name: 'butter',
+            name_en: 'butter',
+            name_de: 'Butter',
             gramsPerCm3: 0.959
         },
         {
-            name: 'water',
+            name_en: 'water',
+            name_de: 'Wasser',
             gramsPerCm3: 1
         },
         {
-            name: 'sunflower oil',
+            name_en: 'sunflower oil',
+            name_de: 'Sonnenblumenöl',
             gramsPerCm3: 0.96
         },
         {
-            name: 'granulated sugar',
+            name_en: 'granulated sugar',
+            name_de: 'Zucker (weiß oder Rohrzucker)',
             gramsPerCm3: 0.849
         },
         {
-            name: 'brown sugar',
+            name_en: 'brown sugar',
+            name_de: 'Brauner Zucker (amerik.)',
             gramsPerCm3: 0.823
         },
         {
-            name: 'milk',
+            name_en: 'milk',
+            name_de: 'Milch',
             gramsPerCm3: 1.035
         },
         {
-            name: 'yogurt',
+            name_en: 'yogurt',
+            name_de: 'Joghurt',
             gramsPerCm3: 1.06
         },
         {
-            name: 'cocoa powder',
+            name_en: 'cocoa powder',
+            name_de: 'Kakaopulver',
             gramsPerCm3: 0.641
         },
         {
-            name: 'chocolate chips',
+            name_en: 'chocolate chips',
+            name_de: 'Schokodrops',
             gramsPerCm3: 0.72
         },
         {
-            name: 'oats',
+            name_en: 'oats',
+            name_de: 'Haferflocken',
             gramsPerCm3: 0.432
         }
     ]

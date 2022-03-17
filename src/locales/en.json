@@ -1,0 +1,51 @@
+{
+  "ingredients": {
+    "heading": "Ingredient Converter",
+    "select": "Select ingredient",
+    "quantity": "Quantity",
+    "from": "Convert from...",
+    "to": "...to:",
+    "submit": "Convert",
+    "result": "are approximately",
+    "default": "all-purpose flour"
+  },
+  "pan-sizes": {
+    "heading": "Pan Size Converter",
+    "from": "Convert from...",
+    "to": "...to:",
+    "before": "Original diameter/length",
+    "after": "Desired diameter/length",
+    "before-width": "Original width",
+    "after-width": "Desired width",
+    "submit": "Convert"
+  },
+  "temp": {
+    "heading": "Temperature Converter",
+    "submit": "Convert"
+  },
+  "menu": {
+    "ingr": "Ingredients",
+    "temp": "Temperature",
+    "pan": "Pan Sizes"
+  },
+  "pans": {
+    "round": "Round",
+    "square": "Square",
+    "rect": "Sheet/Rectangle",
+    "loaf": "Loaf"
+  },
+  "units": {
+    "cm": "cm",
+    "inch": "inch",
+    "cups": "cups",
+    "grams": "grams",
+    "kilograms": "kilograms",
+    "milliliters": "ml",
+    "ounces": "ounces",
+    "tsp": "tsp",
+    "tbsp": "tbsp"
+  },
+  "ingr": {
+    "flour": "Flour"
+  }
+}

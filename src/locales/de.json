@@ -1,0 +1,51 @@
+{
+  "ingredients": {
+    "heading": "Zutaten-Rechner",
+    "select": "Zutat wählen",
+    "quantity": "Menge",
+    "from": "Umrechnen von...",
+    "to": "...zu:",
+    "submit": "Berechnen",
+    "result": "sind etwa",
+    "default": "Mehl"
+  },
+  "pan-sizes": {
+    "heading": "Backformen-Rechner",
+    "from": "Umrechnen von...",
+    "to": "...zu:",
+    "before": "Ursprünglicher Durchmesser/Länge",
+    "after": "Gewünschter Durchmesser/Länge",
+    "before-width": "Ursprüngliche Breite",
+    "after-width": "Gewünschte Breite",
+    "submit": "Berechnen"
+  },
+  "temp": {
+    "heading": "Temperatur-Rechner",
+    "submit": "Berechnen"
+  },
+  "menu": {
+    "ingr": "Zutaten",
+    "temp": "Temperatur",
+    "pan": "Backformen"
+  },
+  "pans": {
+    "round": "Rund",
+    "square": "Quadratisch",
+    "rect": "Blech/Rechteckig",
+    "loaf": "Kastenform"
+  },
+  "units": {
+    "cm": "cm",
+    "inch": "Zoll (inch)",
+    "cups": "Cups",
+    "grams": "Gramm",
+    "kilograms": "Kilo",
+    "milliliters": "ml",
+    "ounces": "Unzen (oz)",
+    "tsp": "Teelöffel",
+    "tbsp": "Esslöffel"
+  },
+  "ingr": {
+    "flour": "Mehl"
+  }
+}
