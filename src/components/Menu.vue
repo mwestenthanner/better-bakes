@@ -79,4 +79,15 @@ export default defineComponent({
     fill: var(--main-accent);
 }
 
+@media (min-width: 74rem) {
+  .menu {
+    grid-area: menu;
+    position: relative !important;
+    grid-template-rows: repeat(3, 1fr);
+    height: 60%;
+    grid-template-columns: 1fr;
+  }
+
+}
+
 </style>
