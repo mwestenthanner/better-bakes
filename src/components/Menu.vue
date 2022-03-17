@@ -39,6 +39,7 @@ export default defineComponent({
 <style scoped>
 
 .menu {
+    background-color: var(--background);
     position: fixed;
     bottom: 0;
     display: grid;

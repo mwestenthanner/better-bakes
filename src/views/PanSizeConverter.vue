@@ -3,13 +3,27 @@
 
         <h2>Pan Size Converter</h2>
 
+        <label for="pan-type-before"><b>Convert from...</b></label>    
+        <select name="pan-type-before" id="pan-type-before" v-model="panBefore" @change="isRectangle()">
+            <option v-for="option in options" :key="option" :value="option.toLowerCase()">{{ option }}</option>
+        </select>
+
         <label for="before">Original diameter/length</label>
         <input id="before" type="number" v-model="numberBefore" />
         <select class="unit" name="unit-before" id="unit-before" v-model="unitBefore">
             <option v-for="unit in units" :key="unit" :value="unit.toLowerCase()">{{ unit }}</option>
         </select>
+        
+        <div class="width" v-if="rectangleBefore">
+            <label for="width-before">Original width</label>
+            <input id="width-before" type="number" v-model="widthBefore" />
+            <select class="unit" name="unit-width-before" id="unit-width-before" v-model="unitBefore">
+                <option v-for="unit in units" :key="unit" :value="unit.toLowerCase()">{{ unit }}</option>
+            </select>
+        </div>
 
-        <select name="pan-type-before" id="pan-type-before" v-model="panBefore">
+        <label for="pan-type-after"><b>...to:</b></label>  
+        <select name="pan-type-after" id="pan-type-after" v-model="panAfter" @change="isRectangle()">
             <option v-for="option in options" :key="option" :value="option.toLowerCase()">{{ option }}</option>
         </select>
 
@@ -19,14 +33,18 @@
             <option v-for="unit in units" :key="unit" :value="unit.toLowerCase()">{{ unit }}</option>
         </select>
 
-        <select name="pan-type-after" id="pan-type-after" v-model="panAfter">
-            <option v-for="option in options" :key="option" :value="option.toLowerCase()">{{ option }}</option>
-        </select>
+        <div class="width" v-if="rectangleAfter">
+            <label for="width-after">Desired width</label>
+            <input id="width-after" type="number" v-model="widthAfter" />
+            <select class="unit" name="unit-width-after" id="unit-width-after" v-model="unitBefore">
+                <option v-for="unit in units" :key="unit" :value="unit.toLowerCase()">{{ unit }}</option>
+            </select>
+        </div>
 
         <button @click="calculateRatio()">Convert</button>
 
         <div class="result" v-if="ratio != 0">
-            <p>Conversion value:</p>
+            <p>Conversion factor:</p>
             <p class="result-value">{{ ratio }}</p>
             <p class="tooltip">{{ tooltip }}</p>
         </div>
@@ -44,10 +62,15 @@ export default defineComponent({
         const numberBefore = ref();
         const unitBefore = ref('cm');
         const panBefore = ref('round');
+        const widthBefore = ref();
+
         const numberAfter = ref();
         const unitAfter = ref('cm');
         const panAfter = ref('round');
+        const widthAfter = ref();
 
+        const rectangleBefore = ref(false);
+        const rectangleAfter = ref(false);
         const ratio = ref(0);
         const tooltip = ref('');
 
@@ -59,12 +82,25 @@ export default defineComponent({
         const options = [
             'Round',
             'Square',
+            'Sheet/Rectangle',
             'Loaf'
         ];
 
+        function isRectangle() {
+
+            if (panBefore.value == "sheet/rectangle") {
+                rectangleBefore.value = true;
+            } else rectangleBefore.value = false;
+
+            if (panAfter.value == "sheet/rectangle") {
+                rectangleAfter.value = true;
+            } else rectangleAfter.value = false;
+
+        }
+
         function calculateRatio() {
-            const before = calculate(unitBefore.value, panBefore.value, numberBefore.value);
-            const after = calculate(unitAfter.value, panAfter.value, numberAfter.value);
+            const before = calculate(unitBefore.value, panBefore.value, numberBefore.value, widthBefore.value);
+            const after = calculate(unitAfter.value, panAfter.value, numberAfter.value, widthAfter.value);
 
             const ratioValue = after / before;
 
@@ -75,10 +111,11 @@ export default defineComponent({
             setTooltip(panBefore.value, panAfter.value);
         }
 
-        function calculate(unit: string, panType: string, value: number) {
+        function calculate(unit: string, panType: string, value: number, width: number) {
 
             if(unit == 'inch') {
                 value = convertInchToCm(value);
+                width = convertInchToCm(width);
             }
 
             let volume = 1;
@@ -89,6 +126,9 @@ export default defineComponent({
                     break;
                 case 'square':
                     volume = calculateVolumeSquare(value);
+                    break;
+                case 'sheet/rectangle':
+                    volume = calculateVolumeRect(value, width);
                     break;
                 case 'loaf':
                     volume = calculateVolumeLoaf(value);
@@ -112,6 +152,10 @@ export default defineComponent({
 
         function calculateVolumeSquare(length: number) {
             return length * length * 4;
+        }
+
+        function calculateVolumeRect(length: number, width: number) {
+            return length * width * 4;
         }
 
         function calculateVolumeLoaf(length: number) {
@@ -141,11 +185,16 @@ export default defineComponent({
             numberBefore,
             unitBefore,
             panBefore,
+            widthBefore,
             numberAfter,
             unitAfter,
             panAfter,
+            widthAfter,
+            rectangleBefore,
+            rectangleAfter,
             ratio,
             tooltip,
+            isRectangle,
             calculateRatio
         }
 
@@ -165,13 +214,17 @@ input {
     margin-right: 5%;
 }
 
+button {
+    margin-bottom: 3rem;
+}
+
 .unit {
     width: 40%;
 }
 
 .result {
     font-size: 110%;
-    margin-top: 2rem;
+    margin-bottom: 8rem;
 }
 
 .result-value {
