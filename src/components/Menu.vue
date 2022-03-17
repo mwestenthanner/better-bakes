@@ -86,6 +86,7 @@ export default defineComponent({
     grid-template-rows: repeat(3, 1fr);
     height: 60%;
     grid-template-columns: 1fr;
+    margin-top: 3rem;
   }
 
 }
