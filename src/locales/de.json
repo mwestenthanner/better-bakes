@@ -17,7 +17,14 @@
     "after": "Gewünschter Durchmesser/Länge",
     "before-width": "Ursprüngliche Breite",
     "after-width": "Gewünschte Breite",
-    "submit": "Berechnen"
+    "submit": "Berechnen",
+    "factor": "Umrechnungsfaktor"
+  },
+  "tooltips": {
+    "loaf-to-round": "Wenn man ein Kastenform-Rezept in einer runden Form backen will, braucht der Kuchen etwa 10 bis 15 Minuten kürzer im Ofen.",
+    "round-to-loaf": "Ein Kastenkuchen braucht länger im Ofen als ein runder Kuchen - die Faustregel lautet: etwa eine Stunde lang backen und regelmäßig kontrollieren.",
+    "square": "Blechkuchen sind in der Regel dünner als runde Kuchen oder Kastenkuchen - mindestens 15 Minuten kürzer backen und regelmäßig nachprüfen.",
+    "empty": ""
   },
   "temp": {
     "heading": "Temperatur-Rechner",

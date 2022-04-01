@@ -1,26 +1,18 @@
-# better-bakes
+# better bakes
 
-Better Bakes is a kitchen unit converter for things such as cups to grams and pan sizes. It is written in Vue 3 and Typescript with PWA support.
+Better Bakes is a kitchen unit converter for metric to volume conversion, temperature conversion and pan size conversion. It is written in Vue 3 and Typescript with PWA support, German localization and testing.
 
-## Project setup
-```
-npm install
-```
+<p>
+  <img src="public/screenshots/ingredients.png" width="32%" />
+  <img src="public/screenshots/temps.png" width="32%" />
+    <img src="public/screenshots/pansizes.png" width="32%" />
+</p>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Check it out
 
-### Compiles and minifies for production
-```
-npm run build
-```
+The web app is currently deployed on Netlify and can be used and installed as a PWA from this link:
 
-### Lints and fixes files
-```
-npm run lint
-```
+[Better Bakes on Netlify](https://better-bakes.netlify.app/)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+

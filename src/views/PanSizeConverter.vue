@@ -44,9 +44,9 @@
         <button @click="calculateRatio()">{{ t("pan-sizes.submit") }}</button>
 
         <div class="result" v-if="ratio != 0">
-            <p>Conversion factor:</p>
+            <p>{{ t("pan-sizes.factor") }}</p>
             <p class="result-value">{{ ratio }}</p>
-            <p class="tooltip">{{ tooltip }}</p>
+            <p class="tooltip">{{ t('tooltips.' + tooltip) }}</p>
         </div>
 
 
@@ -169,16 +169,18 @@ export default defineComponent({
         function setTooltip(panBefore: string, panAfter: string) {
 
             if (panBefore == 'loaf' && panAfter == 'round') {
-                tooltip.value = "If you're baking a loaf recipe in a round pan, the cake will need about 10 to 15 min less in the oven."
+                tooltip.value = 'loaf-to-round' 
             }
 
             if (panBefore == 'round' && panAfter == 'loaf') {
-                tooltip.value = 'A loaf needs longer in the oven than a round cake - you should bake it for about an hour and check regularly.'
+                tooltip.value = 'round-to-loaf'
             }
 
-            if (panBefore != 'square' && panAfter == 'square') {
-                tooltip.value = 'Square cakes typically are thinner than round cakes or loaf cakes - bake them for at least 15 min less and check regularly.'
+            if (panBefore != 'rect' && panAfter == 'rect') {
+                tooltip.value = 'square'
             }
+
+            else tooltip.value = 'empty'
 
         }
 

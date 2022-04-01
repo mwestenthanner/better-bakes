@@ -17,7 +17,14 @@
     "after": "Desired diameter/length",
     "before-width": "Original width",
     "after-width": "Desired width",
-    "submit": "Convert"
+    "submit": "Convert",
+    "factor": "Conversion factor"
+  },
+  "tooltips": {
+    "loaf-to-round": "If you're baking a loaf recipe in a round pan, the cake will need about 10 to 15 min less in the oven.",
+    "round-to-loaf": "A loaf needs longer in the oven than a round cake - you should bake it for about an hour and check regularly.",
+    "square": "Square cakes typically are thinner than round cakes or loaf cakes - bake them for at least 15 min less and check regularly.",
+    "empty": ""
   },
   "temp": {
     "heading": "Temperature Converter",
