@@ -29,160 +29,140 @@
     </main>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import { getIngredients } from '../store'
 import { useI18n } from 'vue-i18n'
 
-export default defineComponent({
-    setup() {
+const { t, locale } = useI18n({ useScope: 'global' })
 
-        const { t, locale } = useI18n({ useScope: 'global' })
+const ingredient = ref(t("ingredients.default"));
+const quantity = ref();
+const beforeUnit = ref('cups');
+const afterUnit = ref('grams');
+const result = ref();
 
-        const ingredient = ref(t("ingredients.default"));
-        const quantity = ref();
-        const beforeUnit = ref('cups');
-        const afterUnit = ref('grams');
-        const result = ref();
+const ingredientList = ref(getIngredients.value.map(item => item[localizeName()] ?? '').sort());
+const ingredients = getIngredients.value;
 
-        const ingredientList = ref(getIngredients.value.map(item => item[localizeName()] ?? '').sort());
-        const ingredients = getIngredients.value;
+const units = [
+    'cups',
+    'grams',
+    'kilograms',
+    'milliliters',
+    'ounces',
+    'tsp',
+    'tbsp'
+]
 
-        const units = [
-            'cups',
-            'grams',
-            'kilograms',
-            'milliliters',
-            'ounces',
-            'tsp',
-            'tbsp'
-        ]
+function localizeName() {
+    return 'name_' + locale.value;
+}
 
-        function localizeName() {
-            return 'name_' + locale.value;
-        }
+function convert() {
 
-        function convert() {
+    const selectedIngredient = ingredients.find(element => element[localizeName()] == ingredient.value);
+    const factor = selectedIngredient?.gramsPerCm3 as number ?? 1;
 
-            const selectedIngredient = ingredients.find(element => element[localizeName()] == ingredient.value);
-            const factor = selectedIngredient?.gramsPerCm3 as number ?? 1;
+    const volumeUnits = [
+        'cups',
+        'milliliters',
+        'tsp',
+        'tbsp'
+    ]
 
-            const volumeUnits = [
-                'cups',
-                'milliliters',
-                'tsp',
-                'tbsp'
-            ]
-
-            const weightUnits = [
-                'grams',
-                'kilograms',
-                'ounces'
-            ]
+    const weightUnits = [
+        'grams',
+        'kilograms',
+        'ounces'
+    ]
 
 
-            switch (true) {
-                case (volumeUnits.includes(beforeUnit.value) && volumeUnits.includes(afterUnit.value)):
+    switch (true) {
+        case (volumeUnits.includes(beforeUnit.value) && volumeUnits.includes(afterUnit.value)):
 
-                    result.value = convertCm3ToVolumeUnit(convertVolumeToCm3(quantity.value, beforeUnit.value), afterUnit.value);
-                    break;
+            result.value = convertCm3ToVolumeUnit(convertVolumeToCm3(quantity.value, beforeUnit.value), afterUnit.value);
+            break;
 
-                case volumeUnits.includes(beforeUnit.value) && weightUnits.includes(afterUnit.value):
+        case volumeUnits.includes(beforeUnit.value) && weightUnits.includes(afterUnit.value):
 
-                    result.value = convertGramsToWeightUnit(convertVolumeToCm3(quantity.value, beforeUnit.value) * factor, afterUnit.value)
-                    break;
+            result.value = convertGramsToWeightUnit(convertVolumeToCm3(quantity.value, beforeUnit.value) * factor, afterUnit.value)
+            break;
 
-                case weightUnits.includes(beforeUnit.value) && volumeUnits.includes(afterUnit.value):
+        case weightUnits.includes(beforeUnit.value) && volumeUnits.includes(afterUnit.value):
 
-                    result.value = convertCm3ToVolumeUnit(convertWeightToGrams(quantity.value, beforeUnit.value) / factor, afterUnit.value)
-                    break;
+            result.value = convertCm3ToVolumeUnit(convertWeightToGrams(quantity.value, beforeUnit.value) / factor, afterUnit.value)
+            break;
 
-                case weightUnits.includes(beforeUnit.value) && weightUnits.includes(afterUnit.value):
+        case weightUnits.includes(beforeUnit.value) && weightUnits.includes(afterUnit.value):
 
-                    result.value = convertGramsToWeightUnit(convertWeightToGrams(quantity.value, beforeUnit.value), afterUnit.value);
-                    break;
-            }
-
-        }
-
-        function convertVolumeToCm3(volume: number, unit: string) {
-            const cupValue = 236.5882365;
-            const tbspValue = 14.79;
-            const tspValue = 4.9289;
-
-            switch(unit) {
-                case 'cups':
-                    return volume * cupValue;
-                case 'tbsp':
-                    return volume * tbspValue;
-                case 'tsp':
-                    return volume * tspValue;
-                default:
-                    return volume;
-            }
-        }
-
-        function convertCm3ToVolumeUnit(cm3: number, unit: string) {
-            const cupValue = 236.5882365;
-            const tbspValue = 14.79;
-            const tspValue = 4.9289;
-
-            switch(unit) {
-                case 'cups':
-                    return cm3 / cupValue;
-                case 'tbsp':
-                    return cm3 / tbspValue;
-                case 'tsp':
-                    return cm3 / tspValue;
-                default:
-                    return cm3;
-            }
-        }
-
-        function convertWeightToGrams(weight: number, unit: string) {
-            const ozValue = 28.34952
-            const kgValue = 1000
-
-            switch(unit) {
-                case 'ounces':
-                    return weight * ozValue;
-                case 'kilograms':
-                    return weight * kgValue;
-                default:
-                    return weight;
-            }
-        }
-
-        function convertGramsToWeightUnit(grams: number, unit: string) {
-            const ozValue = 28.34952
-            const kgValue = 1000
-
-            switch(unit) {
-                case 'ounces':
-                    return grams / ozValue;
-                case 'kilograms':
-                    return grams / kgValue;
-                default:
-                    return grams;
-            }
-        }
-
-
-        return {
-            t,
-            ingredientList,
-            units,
-            ingredient,
-            quantity,
-            beforeUnit,
-            afterUnit,
-            result,
-            convert
-        }
-
+            result.value = convertGramsToWeightUnit(convertWeightToGrams(quantity.value, beforeUnit.value), afterUnit.value);
+            break;
     }
 
-});
+}
+
+function convertVolumeToCm3(volume: number, unit: string) {
+    const cupValue = 236.5882365;
+    const tbspValue = 14.79;
+    const tspValue = 4.9289;
+
+    switch(unit) {
+        case 'cups':
+            return volume * cupValue;
+        case 'tbsp':
+            return volume * tbspValue;
+        case 'tsp':
+            return volume * tspValue;
+        default:
+            return volume;
+    }
+}
+
+function convertCm3ToVolumeUnit(cm3: number, unit: string) {
+    const cupValue = 236.5882365;
+    const tbspValue = 14.79;
+    const tspValue = 4.9289;
+
+    switch(unit) {
+        case 'cups':
+            return cm3 / cupValue;
+        case 'tbsp':
+            return cm3 / tbspValue;
+        case 'tsp':
+            return cm3 / tspValue;
+        default:
+            return cm3;
+    }
+}
+
+function convertWeightToGrams(weight: number, unit: string) {
+    const ozValue = 28.34952
+    const kgValue = 1000
+
+    switch(unit) {
+        case 'ounces':
+            return weight * ozValue;
+        case 'kilograms':
+            return weight * kgValue;
+        default:
+            return weight;
+    }
+}
+
+function convertGramsToWeightUnit(grams: number, unit: string) {
+    const ozValue = 28.34952
+    const kgValue = 1000
+
+    switch(unit) {
+        case 'ounces':
+            return grams / ozValue;
+        case 'kilograms':
+            return grams / kgValue;
+        default:
+            return grams;
+    }
+}
 </script>
 
 <style scoped>

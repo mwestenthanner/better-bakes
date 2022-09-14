@@ -53,160 +53,133 @@
     </main>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n'
 
-export default defineComponent({
-    setup() {
+const {t} = useI18n({})
 
-        const {t} = useI18n({})
-        
-        const numberBefore = ref();
-        const unitBefore = ref('cm');
-        const panBefore = ref('round');
-        const widthBefore = ref();
+const numberBefore = ref();
+const unitBefore = ref('cm');
+const panBefore = ref('round');
+const widthBefore = ref();
 
-        const numberAfter = ref();
-        const unitAfter = ref('cm');
-        const panAfter = ref('round');
-        const widthAfter = ref();
+const numberAfter = ref();
+const unitAfter = ref('cm');
+const panAfter = ref('round');
+const widthAfter = ref();
 
-        const rectangleBefore = ref(false);
-        const rectangleAfter = ref(false);
-        const ratio = ref(0);
-        const tooltip = ref('');
+const rectangleBefore = ref(false);
+const rectangleAfter = ref(false);
+const ratio = ref(0);
+const tooltip = ref('');
 
-        const units = [
-            'cm',
-            'inch'
-        ]
+const units = [
+    'cm',
+    'inch'
+]
 
-        const options = [
-            'round',
-            'square',
-            'rect',
-            'loaf'
-        ];
+const options = [
+    'round',
+    'square',
+    'rect',
+    'loaf'
+];
 
-        function isRectangle() {
+function isRectangle() {
 
-            if (panBefore.value == "rect") {
-                rectangleBefore.value = true;
-            } else rectangleBefore.value = false;
+    if (panBefore.value == "rect") {
+        rectangleBefore.value = true;
+    } else rectangleBefore.value = false;
 
-            if (panAfter.value == "rect") {
-                rectangleAfter.value = true;
-            } else rectangleAfter.value = false;
+    if (panAfter.value == "rect") {
+        rectangleAfter.value = true;
+    } else rectangleAfter.value = false;
 
-        }
+}
 
-        function calculateRatio() {
-            const before = calculate(unitBefore.value, panBefore.value, numberBefore.value, widthBefore.value);
-            const after = calculate(unitAfter.value, panAfter.value, numberAfter.value, widthAfter.value);
+function calculateRatio() {
+    const before = calculate(unitBefore.value, panBefore.value, numberBefore.value, widthBefore.value);
+    const after = calculate(unitAfter.value, panAfter.value, numberAfter.value, widthAfter.value);
 
-            const ratioValue = after / before;
+    const ratioValue = after / before;
 
-            if (Number.isNaN(ratioValue)) {
-                ratio.value = 0;
-            } else ratio.value = Math.round(ratioValue * 100) / 100 ;
+    if (Number.isNaN(ratioValue)) {
+        ratio.value = 0;
+    } else ratio.value = Math.round(ratioValue * 100) / 100 ;
 
-            setTooltip(panBefore.value, panAfter.value);
-        }
+    setTooltip(panBefore.value, panAfter.value);
+}
 
-        function calculate(unit: string, panType: string, value: number, width: number) {
+function calculate(unit: string, panType: string, value: number, width: number) {
 
-            if(unit == 'inch') {
-                value = convertInchToCm(value);
-                width = convertInchToCm(width);
-            }
-
-            let volume = 1;
-
-            switch(panType) {
-                case 'round':
-                    volume = calculateVolumeRound(value);
-                    break;
-                case 'square':
-                    volume = calculateVolumeSquare(value);
-                    break;
-                case 'rect':
-                    volume = calculateVolumeRect(value, width);
-                    break;
-                case 'loaf':
-                    volume = calculateVolumeLoaf(value);
-                    break;
-            }
-
-            return volume;
-
-        }
-
-        // convert inches to cm
-        function convertInchToCm(value: number) {
-            return value * 2.54;
-        }
-
-        // Calculate volume, based on value in cm
-        function calculateVolumeRound(diameter: number) {
-            const radius = diameter / 2;
-            return radius * radius * Math.PI * 5;
-        }
-
-        function calculateVolumeSquare(length: number) {
-            return length * length * 4;
-        }
-
-        function calculateVolumeRect(length: number, width: number) {
-            return length * width * 4;
-        }
-
-        function calculateVolumeLoaf(length: number) {
-            return length * 10 * 7;
-        }
-
-        // Additional tip based on pans
-        function setTooltip(panBefore: string, panAfter: string) {
-
-            if (panBefore == 'loaf' && panAfter == 'round') {
-                tooltip.value = 'loaf-to-round' 
-            }
-
-            if (panBefore == 'round' && panAfter == 'loaf') {
-                tooltip.value = 'round-to-loaf'
-            }
-
-            if (panBefore != 'rect' && panAfter == 'rect') {
-                tooltip.value = 'square'
-            }
-
-            else tooltip.value = 'empty'
-
-        }
-
-        return {
-            t,
-            options,
-            units,
-            numberBefore,
-            unitBefore,
-            panBefore,
-            widthBefore,
-            numberAfter,
-            unitAfter,
-            panAfter,
-            widthAfter,
-            rectangleBefore,
-            rectangleAfter,
-            ratio,
-            tooltip,
-            isRectangle,
-            calculateRatio
-        }
-
+    if(unit == 'inch') {
+        value = convertInchToCm(value);
+        width = convertInchToCm(width);
     }
 
-});
+    let volume = 1;
+
+    switch(panType) {
+        case 'round':
+            volume = calculateVolumeRound(value);
+            break;
+        case 'square':
+            volume = calculateVolumeSquare(value);
+            break;
+        case 'rect':
+            volume = calculateVolumeRect(value, width);
+            break;
+        case 'loaf':
+            volume = calculateVolumeLoaf(value);
+            break;
+    }
+
+    return volume;
+
+}
+
+// convert inches to cm
+function convertInchToCm(value: number) {
+    return value * 2.54;
+}
+
+// Calculate volume, based on value in cm
+function calculateVolumeRound(diameter: number) {
+    const radius = diameter / 2;
+    return radius * radius * Math.PI * 5;
+}
+
+function calculateVolumeSquare(length: number) {
+    return length * length * 4;
+}
+
+function calculateVolumeRect(length: number, width: number) {
+    return length * width * 4;
+}
+
+function calculateVolumeLoaf(length: number) {
+    return length * 10 * 7;
+}
+
+// Additional tip based on pans
+function setTooltip(panBefore: string, panAfter: string) {
+
+    if (panBefore == 'loaf' && panAfter == 'round') {
+        tooltip.value = 'loaf-to-round' 
+    }
+
+    if (panBefore == 'round' && panAfter == 'loaf') {
+        tooltip.value = 'round-to-loaf'
+    }
+
+    if (panBefore != 'rect' && panAfter == 'rect') {
+        tooltip.value = 'square'
+    }
+
+    else tooltip.value = 'empty'
+
+}
 </script>
 
 <style scoped>

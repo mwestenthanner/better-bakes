@@ -14,57 +14,42 @@
     </main>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-export default defineComponent({
-    setup() {
+const {t} = useI18n({})
 
-        const {t} = useI18n({})
+let celsius = ref();
+let fahrenheit = ref();
 
-        let celsius = ref();
-        let fahrenheit = ref();
+function calculateTemperature() {
 
-        function calculateTemperature() {
+    if (isNaN(celsius.value) && !isNaN(fahrenheit.value)) {
 
-            if (isNaN(celsius.value) && !isNaN(fahrenheit.value)) {
+        console.log(celsius.value);
 
-                console.log(celsius.value);
+        celsius.value = (fahrenheit.value - 32) * 5/9;
 
-                celsius.value = (fahrenheit.value - 32) * 5/9;
+    } else if (!isNaN(celsius.value) && isNaN(fahrenheit.value)) {
+        
+        fahrenheit.value = celsius.value * 1.8 + 32
 
-            } else if (!isNaN(celsius.value) && isNaN(fahrenheit.value)) {
-                
-                fahrenheit.value = celsius.value * 1.8 + 32
+    } 
 
-            } 
+}
 
-        }
+function emptyInputs(input: string) {
 
-        function emptyInputs(input: string) {
-
-            if (input == 'celsius') {
-                fahrenheit.value = undefined;
-            }
-
-            if (input == 'fahrenheit') {
-                celsius.value = undefined;
-            }
-
-        }
-
-        return {
-            t,
-            celsius,
-            fahrenheit,
-            calculateTemperature,
-            emptyInputs
-        }
-
+    if (input == 'celsius') {
+        fahrenheit.value = undefined;
     }
 
-});
+    if (input == 'fahrenheit') {
+        celsius.value = undefined;
+    }
+
+}
 </script>
 
 <style scoped>

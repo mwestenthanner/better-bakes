@@ -21,26 +21,16 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
-export default defineComponent({
-    setup() {
+const {t} = useI18n({})
 
-        const {t} = useI18n({})
-
-        const currentRoute = computed(() => {
-        return useRoute().name
-        })
-
-        return { 
-            t,
-            currentRoute
-        }
-  }
-});
+const currentRoute = computed(() => {
+return useRoute().name
+})
 </script>
 
 <style scoped>
