@@ -53,6 +53,16 @@
     "tbsp": "Esslöffel"
   },
   "ingr": {
-    "flour": "Mehl"
+    "all-purpose flour": "Mehl (Type 550)",
+    "butter": "Butter",
+    "water": "Wasser",
+    "sunflower oil": "Sonnenblumenöl",
+    "granulated sugar": "Zucker (weiß)",
+    "brown sugar": "Zucker (braun, US)",
+    "milk": "Milch (Vollmilch)",
+    "yogurt": "Joghurt",
+    "cocoa powder": "Kakaopulver",
+    "chocolate chips": "Schokodrops",
+    "oats": "Haferflocken"
   }
 }

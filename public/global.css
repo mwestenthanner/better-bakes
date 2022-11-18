@@ -25,8 +25,22 @@ body, input, button, select, option {
     --field-background: rgb(241, 241, 241);
     --grey: rgb(197, 197, 197);
     --text: rgb(51, 51, 51);
-    --main-accent: rgb(0, 119, 128);
-    --secondary-accent: rgb(250, 176, 15);
+    --main-accent: rgb(250, 176, 15);
+    --secondary-accent: rgb(0, 119, 128);
+
+    /* VUEFORM MULTISELECT */
+    --ms-radius: 0.5rem;
+    --ms-bg: var(--field-background);
+    --ms-border-color: transparent;
+    --ms-font-size: calc(1.1 * 1rem);
+    --ms-py: 0.6rem;
+    --ms-px: 1rem;
+    --ms-dropdown-bg: var(--field-background);
+    --ms-dropdown-border-color: var(--background);
+    --ms-option-bg-pointed: var(--grey);
+    --ms-option-color-pointed: var(--text);
+    --ms-option-bg-selected: var(--main-accent);
+    --ms-option-color-selected: #FFFFFF;
 }
 
 /* --- FORM STYLING --- */
@@ -58,7 +72,16 @@ select {
     font-size: 110%;
     width: 100%;
     box-sizing: border-box;
-    border-right: 1rem solid transparent
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--background);
+    border-radius: 5px;
 }
 
 /* --- DARK MODE --- */
