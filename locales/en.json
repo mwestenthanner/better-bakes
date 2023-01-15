@@ -37,7 +37,9 @@
     "guides": {
       "butter": "Butter can be replaced with oil, but you need to reduce the amount to 80 percent.",
       "fresh yeast": "Replace with one-third the amount of dry yeast, either instant yeast or active dry yeast. Follow the package instructions to see if the yeast must be proofed before use.",
-      "active dry yeast": "Dry yeast can be replaced with three times the amount of fresh yeast."
+      "active dry yeast": "Dry yeast can be replaced with three times the amount of fresh yeast.",
+      "baking soda": "Baking soda can be replaced with baking powder. You should use about 1 ⅓ of the specified amount.",
+      "buttermilk": "Thin the yogurt out with a few tablespoons of milk. Alternatively, you can curdle milk with a bit of lemon juice and use that as a replacement."
     }
   },
   "menu": {
@@ -77,6 +79,9 @@
     "chocolate chips": "Chocolate chips",
     "oats": "Rolled oats",
     "fresh yeast": "Fresh yeast",
-    "active dry yeast": "Active dry yeast"
+    "active dry yeast": "Active dry yeast",
+    "baking powder": "Baking powder",
+    "baking soda": "Baking soda",
+    "buttermilk": "Buttermilk"
   }
 }

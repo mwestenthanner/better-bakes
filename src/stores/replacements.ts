@@ -17,6 +17,14 @@ export const useReplacementStore = defineStore('replacement', () => {
             ingredient: "active dry yeast",
             replaceWith: "fresh yeast"
         },
+        {
+            ingredient: "baking soda",
+            replaceWith: "baking powder"
+        },
+        {
+            ingredient: "buttermilk",
+            replaceWith: "yogurt"
+        },
     ]);
 
     return {

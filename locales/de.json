@@ -35,9 +35,11 @@
     "select": "Zutat wählen",
     "replace": "Ersetzen durch",
     "guides": {
-      "butter": "Butter lässt sich durch Öl ersetzen, dabei muss man die Menge allerdings auf 80 Prozent reduzieren.",
+      "butter": "Beim Ersatz von Butter durch Öl muss man die Menge auf 80 Prozent reduzieren.",
       "fresh yeast": "Mit einem Drittel der Menge an Trockenhefe ersetzen. Die Packungsanweisung beachten, ob die Hefe vor der Verwendung angerührt werden muss.",
-      "active dry yeast": "Trockenhefe lässt sich mit der dreifachen Menge an Frischhefe ersetzen."
+      "active dry yeast": "Trockenhefe lässt sich mit der dreifachen Menge an Frischhefe ersetzen.",
+      "baking soda": "Man sollte dabei etwa mit 1 ⅓ der Menge arbeiten.",
+      "buttermilk": "Dabei sollte man den Joghurt mit einigen Esslöffeln Milch verdünnen. Alternativ kann man Milch mit Zitronensaft zum Gerinnen bringen, dabei fehlen aber die aktiven Laktobakterien."
     }
   },
   "menu": {
@@ -77,6 +79,9 @@
     "chocolate chips": "Schokodrops",
     "oats": "Haferflocken",
     "fresh yeast": "Hefe (Frischhefe)",
-    "active dry yeast": "Trockenhefe"
+    "active dry yeast": "Trockenhefe",
+    "baking powder": "Backpulver",
+    "baking soda": "Natron",
+    "buttermilk": "Buttermilch"
   }
 }
