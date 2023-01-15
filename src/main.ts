@@ -5,6 +5,8 @@ import router from '@/router'
 import messages from "@intlify/unplugin-vue-i18n/messages";
 import { createPinia } from 'pinia';
 
+import './assets/global.css'
+
 const i18n = createI18n({
     legacy: false,
     globalInjection: true,
