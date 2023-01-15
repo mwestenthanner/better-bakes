@@ -49,8 +49,8 @@
     "kilograms": "Kilo",
     "milliliters": "ml",
     "ounces": "Unzen (oz)",
-    "tsp": "Teelöffel",
-    "tbsp": "Esslöffel"
+    "tsp": "Teelöffel (tsp)",
+    "tbsp": "Esslöffel (tbsp)"
   },
   "ingr": {
     "all-purpose flour": "Mehl (Type 550)",

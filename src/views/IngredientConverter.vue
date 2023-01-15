@@ -54,21 +54,21 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n'
 import Multiselect from '@vueform/multiselect'
+import { storeToRefs } from 'pinia';
+import { useIngredientStore } from '@/stores/ingredients';
+import { useUnitStore } from '@/stores/units';
 
 const { t, te } = useI18n({ useScope: 'global' })
-const store = useStore();
+const { ingredients } = storeToRefs(useIngredientStore());
+const { units } = storeToRefs(useUnitStore());
 
 const ingredient = ref();
 const quantity = ref();
 const beforeUnit = ref('cups');
 const afterUnit = ref('grams');
 const result = ref();
-
-const ingredients = store.state.ingredientList;
-const units = store.state.units;
 
 function getLabelValuePair(objects: Array<any>, translationPrefix?: string) {
     if (!translationPrefix) {
@@ -92,19 +92,22 @@ function getLabelValuePair(objects: Array<any>, translationPrefix?: string) {
 
 
 function convert() {
-    const selectedIngredient = ingredients.find((element: { name: string; }) => element.name == ingredient.value);
-    const before = units.find((element: { name: string; }) => element.name == beforeUnit.value);
-    const after = units.find((element: { name: string; }) => element.name == afterUnit.value);
+    const selectedIngredient = ingredients.value.find((element: { name: string; }) => element.name == ingredient.value);
+    const before = units.value.find((element: { name: string; }) => element.name == beforeUnit.value);
+    const after = units.value.find((element: { name: string; }) => element.name == afterUnit.value);
     const volumeToWeight = selectedIngredient?.gramsPerCm3 as number ?? 1;
 
     // convert if both are volume or both are weight
-    if (before.isVolume == after.isVolume) {
-        result.value = quantity.value * before.baseUnitFactor / after.baseUnitFactor;
-    // convert volume to weight
-    } else if (before.isVolume && !after.isVolume) {
-        result.value = quantity.value * before.baseUnitFactor * volumeToWeight / after.baseUnitFactor;
-    // convert weight to volume
-    } else result.value = quantity.value * before.baseUnitFactor / volumeToWeight / after.baseUnitFactor;
+    if (before && after) {
+        if (before.isVolume == after.isVolume) {
+            result.value = quantity.value * before.baseUnitFactor / after.baseUnitFactor;
+        // convert volume to weight
+        } else if (before.isVolume && !after.isVolume) {
+            result.value = quantity.value * before.baseUnitFactor * volumeToWeight / after.baseUnitFactor;
+        // convert weight to volume
+        } else result.value = quantity.value * before.baseUnitFactor / volumeToWeight / after.baseUnitFactor;
+    }
+   
 }
 
 function reverseUnits() {
