@@ -10,7 +10,6 @@
             :options="getLabelValuePair(ingredients, 'ingr')"
             :searchable="true"
             :required="true"
-            @input="convert()"
         />
 
         <label for="quantity">{{ t("ingredients.quantity") }}</label>
@@ -45,7 +44,7 @@
 
         <button @click="convert()" type="submit">{{ t("ingredients.submit") }}</button>
 
-        <div class="result" v-if="!isNaN(result)">
+        <div class="result" v-if="showResult">
             <p>{{ quantity }} {{ t('units.' + beforeUnit) }} {{ t('ingr.' + ingredient) }} {{ t("ingredients.result") }} <span class="emphasized">{{ result.toFixed(1) }} {{ t('units.' + afterUnit) }}</span>.</p>
         </div>
 
@@ -53,7 +52,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n'
 import Multiselect from '@vueform/multiselect'
 import { storeToRefs } from 'pinia';
@@ -65,10 +64,18 @@ const { ingredients } = storeToRefs(useIngredientStore());
 const { units } = storeToRefs(useUnitStore());
 
 const ingredient = ref();
+const ingredientObject = computed(() => ingredients.value.find(ingr => ingr.name == ingredient.value))
 const quantity = ref();
 const beforeUnit = ref('cups');
 const afterUnit = ref('grams');
 const result = ref();
+const showResult = ref(false);
+
+watch(ingredientObject, (newIngr) => {
+    if (newIngr) {
+        switchToDefaultUnits();
+    } else convert();
+})
 
 function getLabelValuePair(objects: Array<any>, translationPrefix?: string) {
     if (!translationPrefix) {
@@ -90,15 +97,13 @@ function getLabelValuePair(objects: Array<any>, translationPrefix?: string) {
     });
 }
 
-
 function convert() {
-    const selectedIngredient = ingredients.value.find((element: { name: string; }) => element.name == ingredient.value);
     const before = units.value.find((element: { name: string; }) => element.name == beforeUnit.value);
     const after = units.value.find((element: { name: string; }) => element.name == afterUnit.value);
-    const volumeToWeight = selectedIngredient?.gramsPerCm3 as number ?? 1;
+    const volumeToWeight = ingredientObject.value?.gramsPerCm3 as number ?? 1;
 
-    // convert if both are volume or both are weight
     if (before && after) {
+        // convert if both are volume or both are weight
         if (before.isVolume == after.isVolume) {
             result.value = quantity.value * before.baseUnitFactor / after.baseUnitFactor;
         // convert volume to weight
@@ -107,7 +112,16 @@ function convert() {
         // convert weight to volume
         } else result.value = quantity.value * before.baseUnitFactor / volumeToWeight / after.baseUnitFactor;
     }
-   
+
+    // only show if quantity is set
+    if (quantity.value) {
+        showResult.value = true;
+    } else showResult.value = false;
+}
+
+function switchToDefaultUnits() {
+    beforeUnit.value = ingredientObject.value?.defaultFrom || 'grams';
+    afterUnit.value = ingredientObject.value?.defaultTo || 'grams';
 }
 
 function reverseUnits() {
@@ -116,18 +130,6 @@ function reverseUnits() {
 
     beforeUnit.value = after;
     afterUnit.value = before;
-}
-
-function checkAndConvert() {
-    if (!ingredient.value) {
-        document.getElementById('ingredient')?.classList.add("warning")
-    } else if (!quantity.value) {
-        //
-    } else if (!beforeUnit.value) {
-        //
-    } else if (!afterUnit.value) {
-        //
-    } else convert();
 }
 
 </script>

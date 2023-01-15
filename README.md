@@ -18,7 +18,7 @@ The web app is currently deployed on Netlify and can be used and installed as a 
 
 ### Ingredients and units
 
-1. Define universal ingredient name as well as density (grams per cm<sup>3</sup>) and add to the list in stores/ingredients.ts.
+1. Define universal ingredient name as well as density (grams per cm<sup>3</sup>) and add to the list in stores/ingredients.ts. Supply default conversion units (from/to).
 
 ```
 {
@@ -35,7 +35,7 @@ The same process applies to units. Here, it is also necessary to specify whether
 
 1. Specify replacement by adding the names of both the ingredient that should be replaced and the replacement ingredient to the list in stores/replacements.ts.
 
-2. Check if both ingredients are in the ingredient list. If not, add them as well as their translation to account for completeness.
+2. Check if both ingredients are in the translations file. If not, add them. Also, if possible, add them to the ingredients list.
 
 3. To supply a substitution guide (e.g. how much or any limitations), create a translation under repl > guides with the name of the ingredient that is to be replaced.
 
