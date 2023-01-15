@@ -30,10 +30,21 @@
     "heading": "Temperatur-Rechner",
     "submit": "Berechnen"
   },
+  "repl": {
+    "heading": "Zutaten ersetzen",
+    "select": "Zutat wählen",
+    "replace": "Ersetzen durch",
+    "guides": {
+      "butter": "Butter lässt sich durch Öl ersetzen, dabei muss man die Menge allerdings auf 80 Prozent reduzieren.",
+      "fresh yeast": "Mit einem Drittel der Menge an Trockenhefe ersetzen. Die Packungsanweisung beachten, ob die Hefe vor der Verwendung angerührt werden muss.",
+      "active dry yeast": "Trockenhefe lässt sich mit der dreifachen Menge an Frischhefe ersetzen."
+    }
+  },
   "menu": {
     "ingr": "Zutaten",
     "temp": "Temperatur",
-    "pan": "Backformen"
+    "pan": "Backformen",
+    "subs": "Ersetzen"
   },
   "pans": {
     "round": "Rund",
@@ -53,6 +64,7 @@
     "tbsp": "Esslöffel (tbsp)"
   },
   "ingr": {
+    "undefined": "",
     "all-purpose flour": "Mehl (Type 550)",
     "butter": "Butter",
     "water": "Wasser",
@@ -63,6 +75,8 @@
     "yogurt": "Joghurt",
     "cocoa powder": "Kakaopulver",
     "chocolate chips": "Schokodrops",
-    "oats": "Haferflocken"
+    "oats": "Haferflocken",
+    "fresh yeast": "Hefe (Frischhefe)",
+    "active dry yeast": "Trockenhefe"
   }
 }

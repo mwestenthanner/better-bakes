@@ -212,6 +212,7 @@ button {
 
 .tooltip {
     margin-top: 2rem;
+    line-height: 1.5;
 }
 
 </style>

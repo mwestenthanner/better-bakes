@@ -30,10 +30,21 @@
     "heading": "Temperature Converter",
     "submit": "Convert"
   },
+  "repl": {
+    "heading": "Replace ingredients",
+    "select": "Select ingredient",
+    "replace": "Replace with",
+    "guides": {
+      "butter": "Butter can be replaced with oil, but you need to reduce the amount to 80 percent.",
+      "fresh yeast": "Replace with one-third the amount of dry yeast, either instant yeast or active dry yeast. Follow the package instructions to see if the yeast must be proofed before use.",
+      "active dry yeast": "Dry yeast can be replaced with three times the amount of fresh yeast."
+    }
+  },
   "menu": {
     "ingr": "Ingredients",
     "temp": "Temperature",
-    "pan": "Pan Sizes"
+    "pan": "Pan Sizes",
+    "subs": "Substitutions"
   },
   "pans": {
     "round": "Round",
@@ -53,6 +64,19 @@
     "tbsp": "tbsp"
   },
   "ingr": {
-    "flour": "Flour"
+    "undefined": "",
+    "all-purpose flour": "All-purpose flour",
+    "butter": "Butter",
+    "water": "Water",
+    "sunflower oil": "Sunflower oil",
+    "granulated sugar": "Granulated sugar (white)",
+    "brown sugar": "Brown sugar (Muscovado)",
+    "milk": "Whole milk",
+    "yogurt": "Yogurt",
+    "cocoa powder": "Cocoa powder",
+    "chocolate chips": "Chocolate chips",
+    "oats": "Rolled oats",
+    "fresh yeast": "Fresh yeast",
+    "active dry yeast": "Active dry yeast"
   }
 }

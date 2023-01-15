@@ -48,7 +48,15 @@ export const useIngredientStore = defineStore('ingredients', () => {
         {
             name: 'oats',
             gramsPerCm3: 0.432
-        }
+        },
+        {
+            name: 'fresh yeast',
+            gramsPerCm3: 1.36
+        },
+        {
+            name: 'active dry yeast',
+            gramsPerCm3: 0.81
+        },
     ]);
 
     return {
