@@ -20,12 +20,14 @@ You're welcome to open a PR to expand the current ingredient database. As this a
 
 ### Ingredients and units
 
-1. Define universal ingredient name as well as density (grams per cm<sup>3</sup>) and add to the list in stores/ingredients.ts. Supply default conversion units (from/to).
+1. Define universal ingredient name as well as density (grams per cm<sup>3</sup>) and add to the list in stores/ingredients.ts. Supply default conversion units (defaultFrom/defaultTo).
 
 ```
 {
-  name: 'butter',
-  gramsPerCm3: 0.959
+    name: 'all-purpose flour',
+    gramsPerCm3: 0.529,
+    defaultFrom: 'cups',
+    defaultTo: 'grams'
 }
 ```
 
