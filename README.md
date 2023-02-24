@@ -1,6 +1,6 @@
 # better bakes
 
-Better Bakes is a kitchen unit converter for metric to volume conversion, temperature conversion and pan size conversion. It is written in Vue 3 and Typescript with PWA support, German localization and testing.
+Better Bakes is a kitchen unit converter for metric to volume conversion, temperature conversion and pan size conversion. It is written in Vue 3 and Typescript with German localization and CapacitorJS for an installable Android version.
 
 <p>
   <img src="public/screenshots/ingredients.png" width="32%" />
@@ -10,11 +10,13 @@ Better Bakes is a kitchen unit converter for metric to volume conversion, temper
 
 ## Check it out
 
-The web app is currently deployed on Netlify and can be used and installed as a PWA from this link:
+The web app is currently deployed on Netlify and can be accessed from this link:
 
 [Better Bakes on Netlify](https://better-bakes.netlify.app/)
 
 ## Add new values
+
+You're welcome to open a PR to expand the current ingredient database. As this app has no backend, no sensitive data and is read-only, the data lives directly in the frontend.
 
 ### Ingredients and units
 
